@@ -17,7 +17,7 @@
 /**
  * Configuration page for the vote block
  *
- * @package    block_courseaward_vote
+ * @package    block_courseawards_vote
  * @copyright  2011 onwards Paul Vaughan, paulvaughan@southdevon.ac.uk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -55,17 +55,17 @@ if ($ADMIN->fulltree) {
     );
 
     $settings->add(new admin_setting_configselect(
-        'courseaward_vote/wait',
-        get_string('config_time', 'block_courseaward_vote'),
-        get_string('config_time_long', 'block_courseaward_vote'),
+        'courseawards_vote/wait',
+        get_string('config_time', 'block_courseawards_vote'),
+        get_string('config_time_long', 'block_courseawards_vote'),
         86400,
         $delay)
     );
 
     $settings->add(new admin_setting_configcheckbox(
-        'courseaward_vote/note',
-        get_string('config_collect_notes', 'block_courseaward_vote'),
-        get_string('config_note_true', 'block_courseaward_vote'),
+        'courseawards_vote/note',
+        get_string('config_collect_notes', 'block_courseawards_vote'),
+        get_string('config_note_true', 'block_courseawards_vote'),
         true,
         true,
         false)

@@ -88,10 +88,10 @@ Download the archive(s) and extract the files, or [clone the repository from Git
 
     courseawards/
     ├── blocks
-    │   ├── courseaward_medal
+    │   ├── courseawards_medal
     │   │   ├── admin_medal.php
     │   │   ├── admin_unmedal.php
-    │   │   ├── block_courseaward_medal.php
+    │   │   ├── block_courseawards_medal.php
     │   │   ├── db
     │   │   │   ├── access.php
     │   │   │   └── install.xml
@@ -106,15 +106,15 @@ Download the archive(s) and extract the files, or [clone the repository from Git
     │   │   │   └── medal_silver_sm.png
     │   │   ├── lang
     │   │   │   └── en
-    │   │   │       └── block_courseaward_medal.php
+    │   │   │       └── block_courseawards_medal.php
     │   │   ├── libmedal.php
     │   │   ├── pix
     │   │   │   └── icon.png
     │   │   ├── settings.php
     │   │   ├── styles.css
     │   │   └── version.php
-    │   └── courseaward_vote
-    │       ├── block_courseaward_vote.php
+    │   └── courseawards_vote
+    │       ├── block_courseawards_vote.php
     │       ├── db
     │       │   ├── access.php
     │       │   └── install.xml
@@ -127,7 +127,7 @@ Download the archive(s) and extract the files, or [clone the repository from Git
     │       │   └── p.png
     │       ├── lang
     │       │   └── en
-    │       │       └── block_courseaward_vote.php
+    │       │       └── block_courseawards_vote.php
     │       ├── libvote.php
     │       ├── pix
     │       │   └── icon.png
@@ -253,9 +253,9 @@ The only configuration option is the size of the images. The default setting is 
 
 Installing the blocks gives Moodle some new capabilities:
 
-* Administer the *Course Awards - Medal* block: `block/courseaward_medal:admin`
-* Administer the *Course Awards - Vote* block: `block/courseaward_vote:admin`
-* Vote in the *Course Awards - Vote* block: `block/courseaward_vote:vote`
+* Administer the *Course Awards - Medal* block: `block/courseawards_medal:admin`
+* Administer the *Course Awards - Vote* block: `block/courseawards_vote:admin`
+* Vote in the *Course Awards - Vote* block: `block/courseawards_vote:vote`
 
 > **Note:** Think of capabilities of rules which govern how Moodle decides who can do things.
 

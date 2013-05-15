@@ -17,7 +17,7 @@
 /**
  * Course Award Vote block
  *
- * @package    block_courseaward_vote
+ * @package    block_courseawards_vote
  * @copyright  2011 onwards Paul Vaughan, paulvaughan@southdevon.ac.uk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,10 +25,10 @@
 // Set to true to get some extra debugging info relating to capabilities/roles.
 define('DEBUG', false);
 
-class block_courseaward_vote extends block_base {
+class block_courseawards_vote extends block_base {
 
     public function init() {
-        $this->title = get_string('pluginname', 'block_courseaward_vote');
+        $this->title = get_string('pluginname', 'block_courseawards_vote');
     }
 
     public function instance_allow_multiple() {
@@ -50,18 +50,18 @@ class block_courseaward_vote extends block_base {
         $imgw = 30;
         $imgh = 30;
         $alttxt = array(
-            get_string('vote0', 'block_courseaward_vote'),
-            get_string('vote1', 'block_courseaward_vote'),
-            get_string('vote2', 'block_courseaward_vote'),
-            get_string('vote3', 'block_courseaward_vote')
+            get_string('vote0', 'block_courseawards_vote'),
+            get_string('vote1', 'block_courseawards_vote'),
+            get_string('vote2', 'block_courseawards_vote'),
+            get_string('vote3', 'block_courseawards_vote')
         );
-        $pathtoblock = $CFG->wwwroot.'/blocks/courseaward_vote/';
+        $pathtoblock = $CFG->wwwroot.'/blocks/courseawards_vote/';
 
-        require_once($CFG->dirroot.'/blocks/courseaward_vote/libvote.php');
+        require_once($CFG->dirroot.'/blocks/courseawards_vote/libvote.php');
 
-        if (has_capability('block/courseaward_vote:admin', get_context_instance(CONTEXT_COURSE, $COURSE->id))) {
+        if (has_capability('block/courseawards_vote:admin', get_context_instance(CONTEXT_COURSE, $COURSE->id))) {
             // User has the 'admin' capability and can do pretty much anything.
-            // Note that this is 'block/courseaward_vote:admin' and not 'moodle/site:doanything'.
+            // Note that this is 'block/courseawards_vote:admin' and not 'moodle/site:doanything'.
 
             // Debugging.
             if (DEBUG) {
@@ -70,9 +70,9 @@ class block_courseaward_vote extends block_base {
 
             $build .= "\n".'<div class="center clear">';
             $build .= '<a href="'.$CFG->wwwroot.'/report/courseawards/report.php?q=v&c='.$COURSE->id.'&s=c">'.
-                get_string('admin-reportcourse', 'block_courseaward_vote').'</a><br />'."\n";
+                get_string('admin-reportcourse', 'block_courseawards_vote').'</a><br />'."\n";
             $build .= '<a href="'.$CFG->wwwroot.'/report/courseawards/index.php">'.
-                get_string('admin-reportall', 'block_courseaward_vote').'</a>'."\n";
+                get_string('admin-reportall', 'block_courseawards_vote').'</a>'."\n";
             $build .='</div>';
 
             // True means show deleted (different colour).
@@ -81,7 +81,7 @@ class block_courseaward_vote extends block_base {
             // Show the stars in summary.
             $build .= get_votes_summary($COURSE->id, true);
 
-        } else if (has_capability('block/courseaward_vote:vote', get_context_instance(CONTEXT_COURSE, $COURSE->id))) {
+        } else if (has_capability('block/courseawards_vote:vote', get_context_instance(CONTEXT_COURSE, $COURSE->id))) {
             // User has the 'vote' capability so can vote on the block.
 
             // Debugging.
@@ -92,7 +92,7 @@ class block_courseaward_vote extends block_base {
             if (has_voted($USER->id, $COURSE->id)) {
                 // If the user has already voted.
                 $voted = get_vote($USER->id, $COURSE->id);
-                $build .= '<div class="center">'.get_string('user-alreadyvoted', 'block_courseaward_vote').'</div>'."\n";
+                $build .= '<div class="center">'.get_string('user-alreadyvoted', 'block_courseawards_vote').'</div>'."\n";
                 $build .= '<div class="center bgborder">'."\n";
                 $build .= '<div class="clear"><img src="'.$pathtoblock.'img/'.$voted.'.png" width="'.
                     $imgw.'" height="'.$imgh.'" alt="'.$alttxt[$voted].'" />'."\n";
@@ -100,24 +100,24 @@ class block_courseaward_vote extends block_base {
 
                 // Additionally, if the user left a note.
                 if ($got_note = get_vote_note($USER->id, $COURSE->id)) {
-                    $build .= '<div class="clear">'.get_string('note_noted', 'block_courseaward_vote').' &ldquo;'.$got_note.'&rdquo;</div>'."\n";
+                    $build .= '<div class="clear">'.get_string('note_noted', 'block_courseawards_vote').' &ldquo;'.$got_note.'&rdquo;</div>'."\n";
                 }
 
                 // If the user has waited (the agreed delay).
                 if (can_change_vote($USER->id, $COURSE->id)) {
                     $build .= '<span class="smaller">(<a href="'.$pathtoblock.'unvote.php?cid='.$COURSE->id.'">'.
-                        get_string('user-clicktounvote', 'block_courseaward_vote').'</a>)</span>'."\n";
+                        get_string('user-clicktounvote', 'block_courseawards_vote').'</a>)</span>'."\n";
                 } else {
-                    $build .= '<span class="smaller">('.get_string('error-cantunvoteyet', 'block_courseaward_vote').')</span>'."\n";
+                    $build .= '<span class="smaller">('.get_string('error-cantunvoteyet', 'block_courseawards_vote').')</span>'."\n";
                 }
                 $build .= '</div>'."\n";
 
             } else {
                 // User has not voted before (or has voted, then deleted it after the delay) so present the voting options.
-                if (get_config('courseaward_vote', 'note') == false) {
+                if (get_config('courseawards_vote', 'note') == false) {
 
                     // Voting style 1: no text box, clicky stars only.
-                    $build .= "\n".'<div class="center clear">'.get_string('user-clicktovote', 'block_courseaward_vote').'</div>';
+                    $build .= "\n".'<div class="center clear">'.get_string('user-clicktovote', 'block_courseawards_vote').'</div>';
                     $build .= "\n".'<div class="center clear">';
                     for ($j=0; $j<>4; $j++) {
                         $build .= '<a href="'.$pathtoblock.'vote.php?cid='.$COURSE->id.'&vote='.$j.
@@ -127,15 +127,15 @@ class block_courseaward_vote extends block_base {
                     }
                     $build .='</div>'."\n";
 
-                } else if (get_config('courseaward_vote', 'note') == true) {
+                } else if (get_config('courseawards_vote', 'note') == true) {
 
                     // Voting style 2: text box and clicky stars.
-                    $build .= '<div class="center votetitle clear">'.get_string('user-title', 'block_courseaward_vote').'</div>'."\n";
-                    $build .= '<div class="center">'.get_string('user-clicktovotetextbox', 'block_courseaward_vote').'</div>'."\n";
+                    $build .= '<div class="center votetitle clear">'.get_string('user-title', 'block_courseawards_vote').'</div>'."\n";
+                    $build .= '<div class="center">'.get_string('user-clicktovotetextbox', 'block_courseawards_vote').'</div>'."\n";
                     $build .= '<form method="post" action="'.$pathtoblock.'vote.php">'."\n";
                     $build .= '<input type="hidden" name="cid" value="'.$COURSE->id.'" />'."\n";
                     $build .= '<div class="center"><textarea name="note" rows="2" cols="16" style="votetextarea"></textarea></div>'."\n";
-                    $build .= '<div class="center">'.get_string('user-clicktovote', 'block_courseaward_vote').'</div>'."\n";
+                    $build .= '<div class="center">'.get_string('user-clicktovote', 'block_courseawards_vote').'</div>'."\n";
                     $build .= '<div id="vote_images" class="center cleartop clear">'."\n";
                     for ($j=0; $j<>4; $j++) {
                         $build .= '<input type="image" name="vote'.$j.'" value="'.$j.'" src="'.$pathtoblock.'img/'.$j.'.png" width="'.
@@ -153,11 +153,11 @@ class block_courseaward_vote extends block_base {
                 $build .= '<p style="color:#f00;font-weight:bold;text-align:center;">NO CAPABILITIES (DEFAULT)</p>'."\n";
             }
 
-            $build .= '<div class="center clear">'.get_string('novote-header', 'block_courseaward_vote').'</div>'."\n";
+            $build .= '<div class="center clear">'.get_string('novote-header', 'block_courseawards_vote').'</div>'."\n";
 
             $build .= '<div class="center clear">';
             $build .= '<a href="'.$CFG->wwwroot.'/report/courseawards/report.php?q=v&c='.$COURSE->id.'&s=c">'.
-                get_string('admin-reportcourse', 'block_courseaward_vote').'</a><br />'."\n";
+                get_string('admin-reportcourse', 'block_courseawards_vote').'</a><br />'."\n";
             $build .='</div>';
 
             $build .= get_notes($COURSE->id);

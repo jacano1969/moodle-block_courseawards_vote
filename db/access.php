@@ -17,7 +17,7 @@
 /**
  * Capability definitions for the vote block
  *
- * @package    block_courseaward_vote
+ * @package    block_courseawards_vote
  * @copyright  2011 onwards Paul Vaughan, paulvaughan@southdevon.ac.uk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,7 +27,7 @@ defined('MOODLE_INTERNAL') || die();
 $capabilities = array(
 
     // 'New' standard capability 'addinstance'.
-    'block/courseaward_vote:addinstance' => array(
+    'block/courseawards_vote:addinstance' => array(
         'riskbitmask'   => RISK_XSS,
         'captype'       => 'write',
         'contextlevel'  => CONTEXT_COURSE,
@@ -39,7 +39,7 @@ $capabilities = array(
     ),
 
     // Vote capability is assigned to the student role as default.
-    'block/courseaward_vote:vote' => array(
+    'block/courseawards_vote:vote' => array(
         'riskbitmask' => '',
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
@@ -49,7 +49,7 @@ $capabilities = array(
     ),
 
     // Admin capability is assigned to the admin role as default.
-    'block/courseaward_vote:admin' => array(
+    'block/courseawards_vote:admin' => array(
         'riskbitmask' => RISK_PERSONAL,
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,

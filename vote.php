@@ -17,7 +17,7 @@
 /**
  * Adds a vote and optionally a note
  *
- * @package    block_courseaward_vote
+ * @package    block_courseawards_vote
  * @copyright  2011 onwards Paul Vaughan, paulvaughan@southdevon.ac.uk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,17 +25,16 @@
 require_once(dirname(__FILE__).'/../../config.php');
 
 if (!$course = $DB->get_record('course', array('id'=>required_param('cid', PARAM_INT)))) {
-    print_error(get_string('error-courseidnotset', 'block_courseaward_vote'));
+    print_error(get_string('error-courseidnotset', 'block_courseawards_vote'));
 }
 
 require_login($course);
 
-/**
- * If we're collecting notes, the image submits a form rather than being just a hyperlink, so to get around IE being a righteous pain in the bum,
- * we have to look for the image's name field with _x and _y on the end (click coordinates) instead of just the image's name on it's own (which
- * is how firefox works.
- */
-if (get_config('courseaward_vote', 'note') == true) {
+
+// If we're collecting notes, the image submits a form rather than being just a hyperlink, so to get around IE being a righteous pain in the bum,
+// we have to look for the image's name field with _x and _y on the end (click coordinates) instead of just the image's name on it's own (which
+// is how firefox works.
+if (get_config('courseawards_vote', 'note') == true) {
     // We're collecting notes so we need to optionally check some things.
     if (optional_param('vote0_x', '', PARAM_INT) && optional_param('vote0_y', '', PARAM_INT)) {
         $vote = 0;
@@ -46,7 +45,7 @@ if (get_config('courseaward_vote', 'note') == true) {
     } else if (optional_param('vote3_x', '', PARAM_INT) && optional_param('vote3_y', '', PARAM_INT)) {
         $vote = 3;
     } else {
-        print_error(get_string('error-iefixfail', 'block_courseaward_vote'));
+        print_error(get_string('error-iefixfail', 'block_courseawards_vote'));
     }
 } else {
     // We're not collecting notes.
@@ -56,11 +55,11 @@ if (get_config('courseaward_vote', 'note') == true) {
 $note = optional_param('note', '', PARAM_NOTAGS);
 
 if ($vote < 0 || $vote > 3) {
-    print_error(get_string('error-voteoutofrange', 'block_courseaward_vote'));
+    print_error(get_string('error-voteoutofrange', 'block_courseawards_vote'));
 }
 
 if (!$USER->id) {
-    print_error(get_string('error-useridnotset', 'block_courseaward_vote'));
+    print_error(get_string('error-useridnotset', 'block_courseawards_vote'));
 }
 
 $now = time();
@@ -72,8 +71,8 @@ $dbinsert->date_added       = $now;
 $dbinsert->date_modified    = $now;
 $dbinsert->note             = $note;
 
-if (!$DB->insert_record('block_courseaward_vote', $dbinsert)) {
-    print_error(get_string('error-dbinsert', 'block_courseaward_vote'));
+if (!$DB->insert_record('block_courseawards_vote', $dbinsert)) {
+    print_error(get_string('error-dbinsert', 'block_courseawards_vote'));
 } else {
     redirect($CFG->wwwroot.'/course/view.php?id='.$COURSE->id);
 }

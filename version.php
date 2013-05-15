@@ -17,14 +17,14 @@
 /**
  * Course Award Vote block version details
  *
- * @package    block_courseaward_vote
+ * @package    block_courseawards_vote
  * @copyright  2011 onwards Paul Vaughan, paulvaughan@southdevon.ac.uk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 $plugin->version        = 2013051500;                   // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires       = 2010112400;                   // Moodle 2.0+.
-$plugin->component      = 'block_courseaward_vote';     // Full name of the plugin (used for diagnostics).
+$plugin->component      = 'block_courseawards_vote';     // Full name of the plugin (used for diagnostics).
 $plugin->cron           = 0;                            // Period for cron to check this plugin (secs).
 $plugin->maturity       = MATURITY_ALPHA;
 $plugin->release        = '2.1.0';

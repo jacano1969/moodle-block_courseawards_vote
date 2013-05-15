@@ -17,7 +17,7 @@
 /**
  * Language strings for the vote block
  *
- * @package    block_courseaward_vote
+ * @package    block_courseawards_vote
  * @copyright  2011 onwards Paul Vaughan, paulvaughan@southdevon.ac.uk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -77,5 +77,5 @@ $string['note_get'] = '(Show/hide notes)';
 $string['note_noted'] = 'You noted:';
 
 // Capabilities strings.
-$string['courseaward_vote:vote'] = 'Vote in the Course Awards - Vote block';
-$string['courseaward_vote:admin'] = 'Administrate the Course Awards - Vote block';
+$string['courseawards_vote:vote'] = 'Vote in the Course Awards - Vote block';
+$string['courseawards_vote:admin'] = 'Administrate the Course Awards - Vote block';

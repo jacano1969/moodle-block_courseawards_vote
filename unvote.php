@@ -17,7 +17,7 @@
 /**
  * Removes a vote [and note] (sets it to deleted)
  *
- * @package    block_courseaward_vote
+ * @package    block_courseawards_vote
  * @copyright  2011 onwards Paul Vaughan, paulvaughan@southdevon.ac.uk
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -27,23 +27,23 @@ require_once(dirname(__FILE__).'/../../config.php');
 defined('MOODLE_INTERNAL') || die;
 
 if (!$course = $DB->get_record('course', array('id'=>required_param('cid', PARAM_INT)))) {
-    print_error(get_string('error-courseidnotset', 'block_courseaward_vote'));
+    print_error(get_string('error-courseidnotset', 'block_courseawards_vote'));
 }
 
 require_login($course);
 
-require_once($CFG->dirroot.'/blocks/courseaward_vote/libvote.php');
+require_once($CFG->dirroot.'/blocks/courseawards_vote/libvote.php');
 
 if (!$USER->id) {
-    print_error(get_string('error-useridnotset', 'block_courseaward_vote'));
+    print_error(get_string('error-useridnotset', 'block_courseawards_vote'));
 }
 
 if (!can_change_vote($USER->id, $course->id)) {
-    print_error(get_string('error-cantunvoteyet', 'block_courseaward_vote'));
+    print_error(get_string('error-cantunvoteyet', 'block_courseawards_vote'));
 }
 
 if (!$vote_id = get_vote_id($USER->id, $course->id)) {
-    print_error(get_string('error-novoteid', 'block_courseaward_vote'));
+    print_error(get_string('error-novoteid', 'block_courseawards_vote'));
 }
 
 $dbupdate = new object();
@@ -52,8 +52,8 @@ $dbupdate->date_modified    = time();
 $dbupdate->deleted          = 1;
 $dbupdate->deleted_user_id  = $USER->id;
 
-if (!$DB->update_record('block_courseaward_vote', $dbupdate)) {
-    print_error(get_string('error-dbupdate', 'block_courseaward_vote'));
+if (!$DB->update_record('block_courseawards_vote', $dbupdate)) {
+    print_error(get_string('error-dbupdate', 'block_courseawards_vote'));
 } else {
     redirect($CFG->wwwroot.'/course/view.php?id='.$course->id);
 }
