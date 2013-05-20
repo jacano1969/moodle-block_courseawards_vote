@@ -127,7 +127,7 @@ class block_courseawards_vote extends block_base {
                     }
                     $build .='</div>'."\n";
 
-                } else if (get_config('courseawards_vote', 'note') == true) {
+                } else {
 
                     // Voting style 2: text box and clicky stars.
                     $build .= '<div class="center votetitle clear">'.get_string('user-title', 'block_courseawards_vote').'</div>'."\n";
@@ -146,7 +146,7 @@ class block_courseawards_vote extends block_base {
             }
 
         } else {
-            // The user does not have a 'vote' or an 'admin' capability so we just show results.
+            // The user does not have a 'vote', or user has 'admin' capability, so we just show results.
 
             // Debugging.
             if (DEBUG) {
